@@ -13,10 +13,10 @@
 	byte[] pwdII = null;
 	StringBuilder sb = new StringBuilder();
 
-	logger.info("============================================");
-	logger.info("=========manager_login start================");
-	logger.info("============================================");
-	logger.info("##manager_login all parameter : companyCode=" + companyCode + ", id=" + id);
+	System.out.println("============================================");
+	System.out.println("=========manager_login start================");
+	System.out.println("============================================");
+	System.out.println("##manager_login all parameter : companyCode=" + companyCode + ", id=" + id);
 
 	Connection conn = getMSSQLConnection();
 
@@ -47,10 +47,10 @@
 	}
 
 	if(sb.toString().equals(pwd)) {
-		logger.info("##manager_login result : login success, id=" + id);
+		System.out.println("##manager_login result : login success, id=" + id);
 		out.println(id);
 	} else {
-		logger.info("##manager_login result : login fail, id=" + id);
+		System.out.println("##manager_login result : login fail, id=" + id);
 		out.println("fail");
 	}
 

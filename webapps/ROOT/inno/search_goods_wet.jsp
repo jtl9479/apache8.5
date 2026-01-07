@@ -26,10 +26,10 @@ String dbid = request.getParameter("dbid");
 System.out.println("========search_goods_wet==========");
 System.out.println("=================================="); */
 
-logger.info("============================================");
-logger.info("=========search_goods_wet start=============");
-logger.info("============================================");
-logger.info("##search_goods_wet all parameter :" + qry_where);
+System.out.println("============================================");
+System.out.println("=========search_goods_wet start=============");
+System.out.println("============================================");
+System.out.println("##search_goods_wet all parameter :" + qry_where);
 
 try {
 	conn = getMSSQLConnection();
@@ -71,7 +71,7 @@ try {
 	rs = stmt.executeQuery(quertystring);
 	
 	/* System.out.println(quertystring); */
-	logger.info("##search_gooes_wet query :" + quertystring);
+	System.out.println("##search_gooes_wet query :" + quertystring);
 	
   	ResultSetMetaData rsmd = rs.getMetaData();
 	int columnCnt = rsmd.getColumnCount(); //컬럼????

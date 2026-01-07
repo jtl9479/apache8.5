@@ -15,10 +15,10 @@ request.setCharacterEncoding("UTF-8");
 
 String qry_where = request.getParameter("data");
 
-logger.info("==============inno==============");
-logger.info("=========search_production_4label==========");
-logger.info("====================================");
-logger.info("##search_production_4label all parameter :" + qry_where);
+System.out.println("==============inno==============");
+System.out.println("=========search_production_4label==========");
+System.out.println("====================================");
+System.out.println("##search_production_4label all parameter :" + qry_where);
 
 try {
 	conn = getMSSQLConnection();
@@ -73,7 +73,7 @@ try {
   ResultSet rs = stmt.executeQuery(quertystring);
   
   /* System.out.println(quertystring); */
-  logger.info("##search_production query :" + quertystring);
+  System.out.println("##search_production query :" + quertystring);
   
   ResultSetMetaData rsmd = rs.getMetaData();
 	int columnCnt = rsmd.getColumnCount(); //而щ읆????

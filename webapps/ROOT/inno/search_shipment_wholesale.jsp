@@ -15,9 +15,9 @@ request.setCharacterEncoding("UTF-8");
 
 String qry_where = request.getParameter("data");
 String dbid = request.getParameter("dbid");
-logger.info("==================================");
-logger.info("=========search_shipment==========");
-logger.info("==================================");
+System.out.println("==================================");
+System.out.println("=========search_shipment==========");
+System.out.println("==================================");
 System.out.println(qry_where);
 try {
 	conn = getMSSQLConnection();
@@ -75,7 +75,7 @@ try {
   ResultSet rs = stmt.executeQuery(quertystring);
   
   /* System.out.println(quertystring); */
-  logger.info("##search_shipment query :" + quertystring);
+  System.out.println("##search_shipment query :" + quertystring);
   
   ResultSetMetaData rsmd = rs.getMetaData();
 	int columnCnt = rsmd.getColumnCount(); //컬럼????

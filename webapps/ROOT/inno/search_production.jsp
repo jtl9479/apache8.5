@@ -19,10 +19,10 @@ System.out.println("=========search_production==========");
 System.out.println("====================================");
 System.out.println(qry_where); */
 
-logger.info("==============inno==============");
-logger.info("=========search_production==========");
-logger.info("====================================");
-logger.info("##search_production all parameter :" + qry_where);
+System.out.println("==============inno==============");
+System.out.println("=========search_production==========");
+System.out.println("====================================");
+System.out.println("##search_production all parameter :" + qry_where);
 
 try {
 	conn = getMSSQLConnection();
@@ -76,7 +76,7 @@ try {
   ResultSet rs = stmt.executeQuery(quertystring);
   
   /* System.out.println(quertystring); */
-  logger.info("##search_production query :" + quertystring);
+  System.out.println("##search_production query :" + quertystring);
   
   ResultSetMetaData rsmd = rs.getMetaData();
 	int columnCnt = rsmd.getColumnCount(); //而щ읆????

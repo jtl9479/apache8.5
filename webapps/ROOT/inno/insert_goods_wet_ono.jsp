@@ -31,10 +31,10 @@ try {
 try {
 	String[] splitData = data.split("::");
 
-  logger.info("============================================");
-  logger.info("=========insert_goods_wet_ono start=========");
-  logger.info("============================================");
-  logger.info("##insert_goods_wet_ono all parameter :" + data);
+  System.out.println("============================================");
+  System.out.println("=========insert_goods_wet_ono start=========");
+  System.out.println("============================================");
+  System.out.println("##insert_goods_wet_ono all parameter :" + data);
 
   SimpleDateFormat dateformat = new SimpleDateFormat("yyyyMMdd");
   SimpleDateFormat timeformat = new SimpleDateFormat("HHmmss");
@@ -101,12 +101,12 @@ try {
 
   conn.commit();
 
-  logger.info("##insert_goods_wet_ono parameter : ======INSERT_GOODS_WET_ONO PARAMS=====");
-  logger.info("##insert_goods_wet_ono parameter : ========GI_D_ID===================" + splitData[0]);
-  logger.info("##insert_goods_wet_ono parameter : ========WEIGHT====================" + splitData[1]);
-  logger.info("##insert_goods_wet_ono parameter : ========DATE======================" + dateStr + timeStr);
-  logger.info("##insert_goods_wet_ono parameter : ========REG_ID====================" + splitData[9]);
-  logger.info("##insert_goods_wet_ono parameter : ==================================");
+  System.out.println("##insert_goods_wet_ono parameter : ======INSERT_GOODS_WET_ONO PARAMS=====");
+  System.out.println("##insert_goods_wet_ono parameter : ========GI_D_ID===================" + splitData[0]);
+  System.out.println("##insert_goods_wet_ono parameter : ========WEIGHT====================" + splitData[1]);
+  System.out.println("##insert_goods_wet_ono parameter : ========DATE======================" + dateStr + timeStr);
+  System.out.println("##insert_goods_wet_ono parameter : ========REG_ID====================" + splitData[9]);
+  System.out.println("##insert_goods_wet_ono parameter : ==================================");
 
   if(pstmt != null)
 	  pstmt.close();
@@ -117,7 +117,7 @@ try {
 		out.println("f");
 		out.println(ex.getMessage());
 		ex.printStackTrace();
-		logger.info("=============insert_goods_wet_ono exception============== message :" + ex.getMessage().toString());
+		System.out.println("=============insert_goods_wet_ono exception============== message :" + ex.getMessage().toString());
 		conn.rollback();
 		conn.close();
 }

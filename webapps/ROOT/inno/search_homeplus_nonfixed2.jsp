@@ -20,10 +20,10 @@ System.out.println("=======qry_where========" + qry_where);
 
 /* System.out.println("==================================");
 System.out.println("=================================="); */
-logger.info("============================================");
-logger.info("=========search_barcode_info start==========");
-logger.info("============================================");
-logger.info("##search_barcode_info all parameter :" + qry_where);
+System.out.println("============================================");
+System.out.println("=========search_barcode_info start==========");
+System.out.println("============================================");
+System.out.println("##search_barcode_info all parameter :" + qry_where);
 
 try {
 	conn = getMSSQLConnection();
@@ -73,7 +73,7 @@ try {
   
   //System.out.println(quertystring);
   
-  logger.info("##search_barcode_info query :" + quertystring);
+  System.out.println("##search_barcode_info query :" + quertystring);
   
   ResultSetMetaData rsmd = rs.getMetaData();
 	int columnCnt = rsmd.getColumnCount(); //컬럼????

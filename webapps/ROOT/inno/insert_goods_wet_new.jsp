@@ -34,13 +34,13 @@ try {
   //String[] splitData = data.split("::");
   String[] splitDataTotal = data.split("##");
   
-  logger.info("####LENGTH CHECK#### : "+splitDataTotal.length);
-  logger.info("####LENGTH CHECK#### : "+splitDataTotal[0]);
+  System.out.println("####LENGTH CHECK#### : "+splitDataTotal.length);
+  System.out.println("####LENGTH CHECK#### : "+splitDataTotal[0]);
 	
-  logger.info("============================================");
-  logger.info("=========insert_goods_wet start=============");
-  logger.info("============================================");
-  logger.info("##insert_goods_wet all parameter :" + data);	
+  System.out.println("============================================");
+  System.out.println("=========insert_goods_wet start=============");
+  System.out.println("============================================");
+  System.out.println("##insert_goods_wet all parameter :" + data);	
 
   SimpleDateFormat dateformat = new SimpleDateFormat("yyyyMMdd");
   SimpleDateFormat timeformat = new SimpleDateFormat("HHmmss");
@@ -86,17 +86,17 @@ try {
 	  pstmt.setString(11, dateStr);
 	  pstmt.setString(12, timeStr);
 
-	  logger.info("##insert_goods_wet query start, query :"+ qry);	
+	  System.out.println("##insert_goods_wet query start, query :"+ qry);	
 	  
 	  pstmt.executeUpdate();
 	  pstmt.clearParameters();
 	  
-	  logger.info("##insert_goods_wet parameter : ======INSERT_GOODS_WET PARAMS=====");
-	  logger.info("##insert_goods_wet parameter : ========GI_D_ID===================" + splitData[0]);
-	  logger.info("##insert_goods_wet parameter : ========WEIGHT====================" + splitData[1]);
-	  logger.info("##insert_goods_wet parameter : ========DATE======================" + dateStr + timeStr);
-	  logger.info("##insert_goods_wet parameter : ========REG_ID====================" + splitData[9]);
-	  logger.info("##insert_goods_wet parameter : ==================================");
+	  System.out.println("##insert_goods_wet parameter : ======INSERT_GOODS_WET PARAMS=====");
+	  System.out.println("##insert_goods_wet parameter : ========GI_D_ID===================" + splitData[0]);
+	  System.out.println("##insert_goods_wet parameter : ========WEIGHT====================" + splitData[1]);
+	  System.out.println("##insert_goods_wet parameter : ========DATE======================" + dateStr + timeStr);
+	  System.out.println("##insert_goods_wet parameter : ========REG_ID====================" + splitData[9]);
+	  System.out.println("##insert_goods_wet parameter : ==================================");
 	  
 	}
 	
@@ -112,7 +112,7 @@ try {
 		out.println("f");
 		//out.println(ex.getMessage());
 		ex.printStackTrace();
-		logger.info("=============insert_goods_wet exception============== message :" + ex.getMessage().toString());
+		System.out.println("=============insert_goods_wet exception============== message :" + ex.getMessage().toString());
 		conn.rollback();
 		conn.close();
 }

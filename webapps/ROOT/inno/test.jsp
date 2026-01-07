@@ -14,7 +14,7 @@ Connection conn = null;
 request.setCharacterEncoding("UTF-8");
 
 String qry_where = request.getParameter("data");
-logger.info("This is test.");
+System.out.println("This is test.");
 System.out.println("==================================");
 System.out.println("=========search_shipment==========");
 System.out.println("==================================");
@@ -73,7 +73,7 @@ try {
   ResultSet rs = stmt.executeQuery(quertystring);
   
   System.out.println(quertystring);
-  logger.info("This is quertystring. :" + quertystring);
+  System.out.println("This is quertystring. :" + quertystring);
   
   ResultSetMetaData rsmd = rs.getMetaData();
 	int columnCnt = rsmd.getColumnCount(); //컬럼????

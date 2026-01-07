@@ -15,10 +15,10 @@ request.setCharacterEncoding("UTF-8");
 
 String qry_where = request.getParameter("data");
 
-logger.info("==================inno==================");
-logger.info("=========search_shipment_lotte============");
-logger.info("====================================");
-logger.info("##search_shipment_lotte all parameter :" + qry_where);
+System.out.println("==================inno==================");
+System.out.println("=========search_shipment_lotte============");
+System.out.println("====================================");
+System.out.println("##search_shipment_lotte all parameter :" + qry_where);
 
 try {
 	conn = getMSSQLConnection();
@@ -76,7 +76,7 @@ try {
   ResultSet rs = stmt.executeQuery(quertystring);
   
   /* System.out.println(quertystring); */
-  logger.info("##search_shipment_lotte query :" + quertystring);
+  System.out.println("##search_shipment_lotte query :" + quertystring);
   
   ResultSetMetaData rsmd = rs.getMetaData();
 	int columnCnt = rsmd.getColumnCount(); //컬럼????

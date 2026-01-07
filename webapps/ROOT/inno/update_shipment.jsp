@@ -28,10 +28,10 @@ String dbid = request.getParameter("dbid");
 String data = request.getParameter("data");
 String[] splitData = data.split("::");
 
-logger.info("====================================");
-logger.info("=========update_shipment============");
-logger.info("====================================");
-logger.info("##update_shipment all parameter :" + data);
+System.out.println("====================================");
+System.out.println("=========update_shipment============");
+System.out.println("====================================");
+System.out.println("##update_shipment all parameter :" + data);
 
 SimpleDateFormat dateformat = new SimpleDateFormat("yyyyMMdd");
   SimpleDateFormat timeformat = new SimpleDateFormat("HHmmss");
@@ -97,13 +97,13 @@ try {
 System.out.println("==========update_shipment2=========");
 System.out.println("=================================="); */
 
-	logger.info("##update shipment parameter : ====UPDATE_SHIPMENT PARAMS=====");
-	logger.info("##update shipment parameter : ========MOD_ID=================" + splitData[3]);
-	logger.info("##update shipment parameter : ========DATE===================" + dateStr + timeStr);
-	logger.info("##update shipment parameter : ========GI_D_ID================" + Integer.parseInt(splitData[0]));
-	logger.info("##update shipment parameter : ========ITEM_CODE==============" + splitData[1]);
-	logger.info("##update shipment parameter : ========BRAND_CODE=============" + splitData[2]);
-	logger.info("##update shipment parameter : ===============================");
+	System.out.println("##update shipment parameter : ====UPDATE_SHIPMENT PARAMS=====");
+	System.out.println("##update shipment parameter : ========MOD_ID=================" + splitData[3]);
+	System.out.println("##update shipment parameter : ========DATE===================" + dateStr + timeStr);
+	System.out.println("##update shipment parameter : ========GI_D_ID================" + Integer.parseInt(splitData[0]));
+	System.out.println("##update shipment parameter : ========ITEM_CODE==============" + splitData[1]);
+	System.out.println("##update shipment parameter : ========BRAND_CODE=============" + splitData[2]);
+	System.out.println("##update shipment parameter : ===============================");
 
 	if(pstmt != null) 
 		pstmt.close();
@@ -113,13 +113,13 @@ System.out.println("=================================="); */
 } catch (SQLException e) {
 		out.println("f");
 		out.println(e.getMessage().toString());
-		logger.info("=============update shipment sql exception============== message :" + e.getMessage().toString());
+		System.out.println("=============update shipment sql exception============== message :" + e.getMessage().toString());
 		conn.rollback();
 		if(conn != null) 
 		conn.close();
 } catch (Exception ex) {
 	out.println(ex.getMessage().toString());
-	logger.info("=============update_shipment exception============== message :" + ex.getMessage().toString());
+	System.out.println("=============update_shipment exception============== message :" + ex.getMessage().toString());
 	if(conn != null) 
 		conn.close();
 
