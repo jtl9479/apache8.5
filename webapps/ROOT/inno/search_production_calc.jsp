@@ -3,14 +3,13 @@
 <%@ page import = "java.sql.DriverManager" %>
 <%@ page import="org.apache.log4j.Logger"%>
 <%@ page import="java.sql.*" %>
+<%@ include file="common/db_connection.jsp" %>
 <%!
- static Logger logger = Logger.getLogger("wet_production_calc.jsp"); //log4j를 위해 
+ static Logger logger = Logger.getLogger("wet_production_calc.jsp"); //log4j를 위해
 %>
 <%
 boolean connection = false;
 Connection conn = null;
-String driver = "oracle.jdbc.driver.OracleDriver";
-// String url = "jdbc:oracle:thin:@1.1.1.1:SIDname"; //real
 
 request.setCharacterEncoding("UTF-8");
 
@@ -20,10 +19,10 @@ logger.info("=========search_shipment==========");
 logger.info("==================================");
 System.out.println(qry_where);
 try {
-	Class.forName(driver); 	
-	conn = DriverManager.getConnection(url, "DBuser", "DBPassword"); //real
-
-	connection = true;
+	conn = getMSSQLConnection();
+	if(conn != null) {
+		connection = true;
+	}
 } catch (Exception e) {
 	connection = false;
 	System.out.println("DB 연결 실패");

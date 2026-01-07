@@ -3,14 +3,13 @@
 <%@ page import = "java.sql.DriverManager" %>
 <%@ page import="org.apache.log4j.Logger"%>
 <%@ page import="java.sql.*" %>
+<%@ include file="common/db_connection.jsp" %>
 <%!
- static Logger logger = Logger.getLogger("write.jsp"); //log4j를 위해 
+ static Logger logger = Logger.getLogger("write.jsp"); //log4j를 위해
 %>
 <%
 boolean connection = false;
 Connection conn = null;
-String driver = "oracle.jdbc.driver.OracleDriver";
-String url = "jdbc:oracle:thin:@1.1.1.1:SIDname"; //real
 
 request.setCharacterEncoding("UTF-8");
 
@@ -21,10 +20,10 @@ System.out.println("=========search_shipment==========");
 System.out.println("==================================");
 System.out.println(qry_where);
 try {
-	Class.forName(driver); 	
-	conn = DriverManager.getConnection(url, "DBuser", "DBpassword"); //real
-
-	connection = true;
+	conn = getMSSQLConnection();
+	if(conn != null) {
+		connection = true;
+	}
 } catch (Exception e) {
 	connection = false;
 	System.out.println("DB 연결 실패");
@@ -34,45 +33,6 @@ try {
  //SQL 
   Statement stmt = conn.createStatement();
  
- /*
-  String quertystring = "SELECT " 
-								+ "GI_H_ID"
-								+ ", GI_D_ID"
-								+ ", EOI_ID"
-								+ ", ITEM_CODE"
-								+ ", ITEM_NAME"
-								+ ", EMARTITEM_CODE"
-								+ ", EMARTITEM"
-								+ ", GI_REQ_PKG"
-								+ ", GI_REQ_QTY"
-								+ ", AMOUNT"
-								+ ", GOODS_R_ID"
-								+ ", GR_REF_NO"
-								+ ", GI_REQ_DATE"
-								+ ", BL_NO"
-								+ ", BRAND_CODE"
-								+ ", BRANDNAME"
-								+ ", CLIENT_CODE"
-								+ ", CLIENTNAME"
-								+ ", CENTERNAME"
-								+ ", ITEM_SPEC"
-								+ ", CT_CODE"
-								+ ", IMPORT_ID_NO"
-								+ ", PACKER_CODE"
-								+ ", PACKERNAME"
-								+ ", PACKER_PRODUCT_CODE"
-								+ ", BARCODE_TYPE"
-								+ ", ITEM_TYPE"
-								+ ", PACKWEIGHT"
-								+ ", BARCODEGOODS"
-								+ ", STORE_IN_DATE"
-								+ ", EMARTLOGIS_CODE"
-								+ ", EMARTLOGIS_NAME"
-								+ " FROM VW_PDA_WID_LIST"
-								//+ qry_where
-								+ " ORDER BY EOI_ID ASC";
-  */
-  
   String quertystring = "SELECT " 
 			+ " COL1  GI_H_ID"
 			+ ", COL2 GI_D_ID"

@@ -7,15 +7,13 @@
 <%@ page import="java.text.*" %>
 <%@ page import="java.lang.*" %>
 <%@ page import="org.apache.log4j.Logger"%>
+<%@ include file="common/db_connection.jsp" %>
 <%!
- static Logger logger = Logger.getLogger("insert_goods_wet.jsp"); 
+ static Logger logger = Logger.getLogger("insert_goods_wet.jsp");
 %>
 <%
 boolean connection = false;
 Connection conn = null;
-String driver = "oracle.jdbc.driver.OracleDriver";
- String url = "jdbc:oracle:thin:@1.1.1.1:SIDname";
- //String url = "jdbc:oracle:thin:@192.168.0.7:1523:highland";
 
 request.setCharacterEncoding("UTF-8");
 String data = request.getParameter("data");
@@ -23,9 +21,10 @@ String dbid = request.getParameter("dbid"); //real
 System.out.println("=============dbidCheck==============="+dbid);
 
 try {
-	Class.forName(driver); 
-	conn = DriverManager.getConnection(url, dbid,  "DBpassword"); //real
-	connection = true;
+	conn = getMSSQLConnection();
+	if(conn != null) {
+		connection = true;
+	}
 } catch (Exception e) {
 	connection = false;
 	out.println(e.getMessage().toString());

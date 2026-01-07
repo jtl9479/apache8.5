@@ -3,14 +3,13 @@
 <%@ page import = "java.sql.DriverManager" %>
 <%@ page import="java.sql.*" %>
 <%@ page import="org.apache.log4j.Logger"%>
+<%@ include file="common/db_connection.jsp" %>
 <%!
- static Logger logger = Logger.getLogger("search_barcode_info.jsp"); 
+ static Logger logger = Logger.getLogger("search_barcode_info.jsp");
 %>
 <%
 boolean connection = false;
 Connection conn = null;
-String driver = "oracle.jdbc.driver.OracleDriver";
- String url = "jdbc:oracle:thin:@1.1.1.1:SIDname";
 
 request.setCharacterEncoding("UTF-8");
 
@@ -25,10 +24,10 @@ logger.info("============================================");
 logger.info("##search_barcode_info all parameter :" + qry_where);
 
 try {
-	Class.forName(driver); 
-	conn = DriverManager.getConnection(url, dbid, "DBpassword");
-	
-	connection = true;
+	conn = getMSSQLConnection();
+	if(conn != null) {
+		connection = true;
+	}
 } catch (Exception e) {
 	connection = false;
 	out.println(e.getMessage().toString());

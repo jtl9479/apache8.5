@@ -3,14 +3,14 @@
 <%@ page import = "java.sql.DriverManager" %>
 <%@ page import="java.sql.*" %>
 <%@ page import="org.apache.log4j.Logger"%>
+<%@ include file="common/db_connection.jsp" %>
 <%!
  static Logger logger = Logger.getLogger("search_production.jsp");
 %>
 <%
 boolean connection = false;
 Connection conn = null;
-String driver = "oracle.jdbc.driver.OracleDriver";
- String url = "jdbc:oracle:thin:@1.1.1.1:SIDname";
+
 request.setCharacterEncoding("UTF-8");
 
 String qry_where = request.getParameter("data");
@@ -21,10 +21,11 @@ logger.info("====================================");
 logger.info("##search_production_4label all parameter :" + qry_where);
 
 try {
-	Class.forName(driver); 	
-	conn = DriverManager.getConnection(url, "DBuser", "DBpassword");
-	connection = true;
-	System.out.println("INNO DB 연결 성공 search_production_4label 성공");
+	conn = getMSSQLConnection();
+	if(conn != null) {
+		connection = true;
+		System.out.println("INNO DB 연결 성공 search_production_4label 성공");
+	}
 } catch (Exception e) {
 	connection = false;
 	System.out.println("DB 연결 실패");

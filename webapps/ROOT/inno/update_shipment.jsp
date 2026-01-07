@@ -7,15 +7,13 @@
 <%@ page import="java.text.*" %>
 <%@ page import="java.lang.*" %>
 <%@ page import="org.apache.log4j.Logger"%>
+<%@ include file="common/db_connection.jsp" %>
 <%!
  static Logger logger = Logger.getLogger("update_shipment.jsp");
 %>
 <%
 boolean connection = false;
 Connection conn = null;
-String driver = "oracle.jdbc.driver.OracleDriver";
- String url = "jdbc:oracle:thin:@1.1.1.1:SIDname";
-
 
 /* System.out.println("==================================");
 System.out.println("==========update_shipment=========");
@@ -48,9 +46,10 @@ SimpleDateFormat dateformat = new SimpleDateFormat("yyyyMMdd");
 	String brand_code				= splitData[2];				// 브랜드코드
 	String reg_id				= splitData[3];				// 등록자 ID
 try {
-	Class.forName(driver); 
-	conn = DriverManager.getConnection(url, dbid, "DBPassword");
-	connection = true;
+	conn = getMSSQLConnection();
+	if(conn != null) {
+		connection = true;
+	}
 } catch (Exception e) {
 	connection = false;
 	out.println(e.getMessage().toString());

@@ -6,20 +6,23 @@
 <%@ page import="java.util.Date" %>
 <%@ page import="java.text.*" %>
 <%@ page import="java.lang.*" %>
-
+<%@ page import="org.apache.log4j.Logger"%>
+<%@ include file="common/db_connection.jsp" %>
+<%!
+ static Logger logger = Logger.getLogger("insert_goods_wet_ono.jsp");
+%>
 <%
 boolean connection = false;
 Connection conn = null;
-String driver = "oracle.jdbc.driver.OracleDriver";
-String url = "jdbc:oracle:thin:@1.1.1.1:SIDname";
 
 request.setCharacterEncoding("UTF-8");
 String data = request.getParameter("data");
 
 try {
-	Class.forName(driver); 
-	conn = DriverManager.getConnection(url, "DBuser", "DBpassword");
-	connection = true;
+	conn = getMSSQLConnection();
+	if(conn != null) {
+		connection = true;
+	}
 } catch (Exception e) {
 	connection = false;
 	out.println(e.getMessage().toString());
@@ -27,6 +30,11 @@ try {
 } 
 try {
 	String[] splitData = data.split("::");
+
+  logger.info("============================================");
+  logger.info("=========insert_goods_wet_ono start=========");
+  logger.info("============================================");
+  logger.info("##insert_goods_wet_ono all parameter :" + data);
 
   SimpleDateFormat dateformat = new SimpleDateFormat("yyyyMMdd");
   SimpleDateFormat timeformat = new SimpleDateFormat("HHmmss");
@@ -92,13 +100,24 @@ try {
 
 
   conn.commit();
-  if(pstmt != null) 
+
+  logger.info("##insert_goods_wet_ono parameter : ======INSERT_GOODS_WET_ONO PARAMS=====");
+  logger.info("##insert_goods_wet_ono parameter : ========GI_D_ID===================" + splitData[0]);
+  logger.info("##insert_goods_wet_ono parameter : ========WEIGHT====================" + splitData[1]);
+  logger.info("##insert_goods_wet_ono parameter : ========DATE======================" + dateStr + timeStr);
+  logger.info("##insert_goods_wet_ono parameter : ========REG_ID====================" + splitData[9]);
+  logger.info("##insert_goods_wet_ono parameter : ==================================");
+
+  if(pstmt != null)
 	  pstmt.close();
-  if(conn != null) 
+  if(conn != null)
 	  conn.close();
+  out.println("s");
 } catch (Exception ex) {
+		out.println("f");
 		out.println(ex.getMessage());
 		ex.printStackTrace();
+		logger.info("=============insert_goods_wet_ono exception============== message :" + ex.getMessage().toString());
 		conn.rollback();
 		conn.close();
 }
