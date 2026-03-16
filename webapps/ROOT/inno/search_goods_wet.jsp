@@ -52,19 +52,19 @@ try {
  	stmt = conn.createStatement();
   //ResultSet rs = stmt.executeQuery("SELECT PACKER_CLIENT_CODE, PACKER_PRODUCT_CODE, PACKER_PRD_NAME, BRAND_CODE, BARCODEGOODS, BASEUNIT, ZEROPOINT, PARCKER_PRD_CODE_FROM, PACKER_PRD_CODE_TO, BARCODEGOODS_FROM, BARCODEGOODS_TO, WEIGHT_FROM, WEIGHT_TO, STATUS, REG_ID, REG_DATE, REG_TIME, MEMO FROM S_BARCODE_INFO");
 
-	String quertystring = "SELECT GI_D_ID"
-		+ ", WEIGHT"
-		+ ", WEIGHT_UNIT"
-		+ ", PACKER_PRODUCT_CODE"
-		+ ", BARCODE"
-		+ ", PACKER_CLIENT_CODE"
-		+ ", BOX_CNT"
-		+ ", REG_ID"
-		+ ", REG_DATE"
-		+ ", REG_TIME"
-		+ ", MAKINGDATE"
-		+ ", BOXSERIAL"
-		+ " FROM W_GOODS_WET"
+	String quertystring = "SELECT 출고상세SEQ AS GI_D_ID"
+		+ ", 계근중량 AS WEIGHT"
+		+ ", 계근중량단위 AS WEIGHT_UNIT"
+		+ ", ppCode AS PACKER_PRODUCT_CODE"
+		+ ", 계근바코드 AS BARCODE"
+		+ ", 패커코드 AS PACKER_CLIENT_CODE"
+		+ ", 계근순번 AS BOX_CNT"
+		+ ", 등록사원 AS REG_ID"
+		+ ", 등록일자 AS REG_DATE"
+		+ ", 등록시간 AS REG_TIME"
+		+ ", 제조일자 AS MAKINGDATE"
+		+ ", 박스시리얼 AS BOXSERIAL"
+		+ " FROM SM_출고계근"
 		+ qry_where
 		+ " ORDER BY GI_D_ID ASC";
 		
