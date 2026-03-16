@@ -1,0 +1,48 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.sql.*" %>
+<%!
+    // MSSQL Server 연결
+    public Connection getMSSQLConnection() {
+        Connection conn = null;
+        String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
+        String url = "jdbc:sqlserver://115.68.112.17:1433;databaseName=weberp_dev;encrypt=false";
+        String user = "weberp_dev";
+        String password = "weberpdev!@#";
+
+        try {
+            Class.forName(driver);
+            conn = DriverManager.getConnection(url, user, password);
+            System.out.println("INNO DB 연결 성공");
+        } catch (Exception e) {
+            System.out.println("INNO DB 연결 실패");
+            e.printStackTrace();
+        }
+        return conn;
+    }
+
+    /*
+    // Oracle 연결 (사용 안함)
+    public Connection getOracleConnection() {
+        Connection conn = null;
+        String driver = "oracle.jdbc.driver.OracleDriver";
+        String url = "jdbc:oracle:thin:@1.1.1.1:SIDname";
+        String user = "DBuser";
+        String password = "DBpassword";
+
+        try {
+            Class.forName(driver);
+            conn = DriverManager.getConnection(url, user, password);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return conn;
+    }
+    */
+
+    // DB 연결 종료
+    public void closeDB(Connection conn, Statement stmt, ResultSet rs) {
+        try { if(rs != null) rs.close(); } catch(Exception e) {}
+        try { if(stmt != null) stmt.close(); } catch(Exception e) {}
+        try { if(conn != null) conn.close(); } catch(Exception e) {}
+    }
+%>
