@@ -46,22 +46,26 @@ try {
   String timeStr = timeformat.format(datetime);
 
  //SQL 
-  String qry = "INSERT INTO W_GOODS_WET(GOODS_WET_ID"
-		+ ", GI_D_ID"
-		+ ", WEIGHT"
-		+ ", WEIGHT_UNIT"
-		+ ", PACKER_PRODUCT_CODE"
-		+ ", BARCODE"
-		+ ", PACKER_CLIENT_CODE"
-		+ ", MAKINGDATE"
-		+ ", BOXSERIAL"
-		+ ", BOX_CNT"
-		+ ", REG_ID"
-		+ ", REG_DATE"
-		+ ", REG_TIME)"
+  String qry = "INSERT INTO SM_출고계근(SEQ"
+		+ ", 출고상세SEQ"
+		+ ", 계근중량"
+		+ ", 계근중량단위"
+		+ ", ppCode"
+		+ ", 계근바코드"
+		+ ", 패커코드"
+		+ ", 제조일자"
+		+ ", 박스시리얼"
+		+ ", 계근순번"
+		+ ", 등록사원"
+		+ ", 등록일자"
+		+ ", 등록시간"
+		+ ", 회사코드"
+		+ ", 수정사원"
+		+ ", 수정일자"
+		+ ", 수정시간)"
 		+ " VALUES "
-		+ "(W_GOODS_WET_SEQ.NEXTVAL,?,?,?,?,?,?,?,?,?,?,?,?)";
-  PreparedStatement pstmt = conn.prepareStatement(qry);    
+		+ "(NEXT VALUE FOR SM_DLIVY_WEIGH_SEQ,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+  PreparedStatement pstmt = conn.prepareStatement(qry);
 
 
   pstmt.setInt(1, Integer.parseInt(splitData[0]));
@@ -76,6 +80,10 @@ try {
   pstmt.setString(10, splitData[9]);
   pstmt.setString(11, dateStr);
   pstmt.setString(12, timeStr);
+  pstmt.setString(13, splitData[10]);
+  pstmt.setString(14, splitData[9]);
+  pstmt.setString(15, dateStr);
+  pstmt.setString(16, timeStr);
 
   
 /*
