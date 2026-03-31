@@ -54,10 +54,7 @@ try {
 
   while(rs.next())
   {
-//   out.println(rs.getString("WEIGHT_FROM") + "::" + rs.getString("WEIGHT_TO") + ";;");
      out.println(rs.getString("WEIGHT_FROM") + "::" + rs.getString("WEIGHT_TO") + "::" + rs.getString("ZEROPOINT") + "::" + rs.getString("BASEUNIT"));
-//   out.println(rs.getString("DE_CLIENT(IH.CLIENT_CODE)") + "::" + rs.getString("DE_ITEM(ITEM_CODE)") + ";;");
-//   out.println(rs.getString(rsmd.getColumnName(1)));
   }
 	try{
 	  if(rs != null) 
