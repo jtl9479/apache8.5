@@ -14,10 +14,6 @@ Connection conn = null;
 request.setCharacterEncoding("UTF-8");
 
 String qry_where = request.getParameter("data");
-/* System.out.println("==================================");
-System.out.println("=========search_shipment==========");
-System.out.println("==================================");
-System.out.println(qry_where); */
 
 System.out.println("====================================");
 System.out.println("=========search_shipment============");
@@ -119,16 +115,14 @@ try {
 								+ "   AND H.마트사구분 = '1'"
 								+ "   AND D.출고수량 > 0"
 								+ "   AND I.원료육여부 = '1'"
-								/* + qry_where */
 								+ " ORDER BY GI_D_ID ASC";
   
   ResultSet rs = stmt.executeQuery(quertystring);
   
-  /* System.out.println(quertystring); */
   System.out.println("##search_shipment query :" + quertystring);
   
   ResultSetMetaData rsmd = rs.getMetaData();
-	int columnCnt = rsmd.getColumnCount(); //컬럼????
+	int columnCnt = rsmd.getColumnCount();
 
   while(rs.next()) {
 	out.println(
@@ -173,7 +167,6 @@ try {
 	  if(conn != null) 
 		  conn.close();
 	 }catch(SQLException se){
-	//	 System.out.println("?�결 객체 ?�기 ?�료");
 	}
 
 %>
