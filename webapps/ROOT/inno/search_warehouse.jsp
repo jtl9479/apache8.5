@@ -37,8 +37,8 @@ try {
   								+ ", 창고코드 AS WAREHOUSE_CODE"
 								+ ", 창고명 AS WAREHOUSE_NAME"
 								+ " FROM CO_창고관리"
-								+ " WHERE PDA여부 = '1'"
-								+ qry_where;
+								+ qry_where
+								+ " AND PDA여부 = '1'";
 
   ResultSet rs = stmt.executeQuery(quertystring);
 
