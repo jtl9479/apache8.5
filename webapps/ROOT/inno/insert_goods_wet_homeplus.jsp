@@ -82,49 +82,8 @@ try {
   pstmt.setInt(14, Integer.parseInt(splitData[13]));
 
   
-/*
-  pstmt.setInt(1, 1234567);
-//  pstmt.setDouble(2, ((Double.parseDouble("12.30")) * 100) / 100);
-//  pstmt.setDouble(2, 123.30);
-  pstmt.setString(2, "test");
-  pstmt.setString(3, "test");
-  pstmt.setString(4, "test");
-  pstmt.setString(5, "test");
-  pstmt.setInt(6, 1);
-  pstmt.setString(7, "test");
-  pstmt.setString(8, dateStr);
-  pstmt.setString(9, timeStr);
-*/
-  
   System.out.println("##insert_goods_wet query start, query :"+ qry);	
   pstmt.executeUpdate();
-/*
-	String update_qry = "UPDATE W_GOODS_ID SET "
-			+ "GI_QTY = GI_QTY +  ? "
-			+ ", PACKING_QTY = PACKING_QTY + 1 "
-			+ ", MOD_ID = ? "
-			+ ", MOD_DATE = ? "
-			+ ", MOD_TIME = ? "
-			+ "WHERE GI_D_ID = ? AND ITEM_CODE = ? AND BRAND_CODE = ?"; 
-	pstmt = conn.prepareStatement(update_qry);  
-
-	pstmt.setDouble(1, (Double.parseDouble(splitData[1]) * 100) / 100.0);
-	pstmt.setString(2, splitData[9]);
-	pstmt.setString(3, dateStr);
-	pstmt.setString(4, timeStr);
-	pstmt.setInt(5, Integer.parseInt(splitData[0]));
-	pstmt.setString(6, splitData[10]);		// ITEM_CODE
-	pstmt.setString(7, splitData[11]);		// BRAND_CODE
-
-	pstmt.executeUpdate();
-*/
-	/* System.out.println("============================");
-	System.out.println("========GI_D_ID=======" + splitData[0]);
-	System.out.println("========WEIGHT========" + splitData[1]);
-	System.out.println("========DATE==========" + dateStr + timeStr);
-	System.out.println("========REG_ID========" + splitData[9]);
-	System.out.println("============================"); */ //logger 추가 후 System.out.println 주석처리, 2019.01.28 park.sj
-
   conn.commit();
   
   System.out.println("##insert_goods_wet parameter : ======INSERT_GOODS_WET PARAMS=====");
