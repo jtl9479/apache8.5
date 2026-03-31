@@ -18,8 +18,6 @@ String dbid = request.getParameter("dbid");
 
 System.out.println("=======qry_where========" + qry_where);
 
-/* System.out.println("==================================");
-System.out.println("=================================="); */
 System.out.println("============================================");
 System.out.println("=========search_barcode_info start==========");
 System.out.println("============================================");
@@ -39,8 +37,6 @@ try {
 } 
  //SQL 
   Statement stmt = conn.createStatement();
-  //ResultSet rs = stmt.executeQuery("SELECT PACKER_CLIENT_CODE, PACKER_PRODUCT_CODE, PACKER_PRD_NAME, BRAND_CODE, BARCODEGOODS, BASEUNIT, ZEROPOINT, PARCKER_PRD_CODE_FROM, PACKER_PRD_CODE_TO, BARCODEGOODS_FROM, BARCODEGOODS_TO, WEIGHT_FROM, WEIGHT_TO, STATUS, REG_ID, REG_DATE, REG_TIME, MEMO FROM S_BARCODE_INFO");
-
 	String quertystring = "SELECT '홈플러스용' as PACKER_CLIENT_CODE"
 		+ ", sbi.ITEM_CODE as PACKER_PRODUCT_CODE"
 		+ ", sbi.ITEM_NAME_KR as PACKER_PRD_NAME"
@@ -71,17 +67,14 @@ try {
   
   ResultSet rs = stmt.executeQuery(quertystring);
   
-  //System.out.println(quertystring);
-  
   System.out.println("##search_barcode_info query :" + quertystring);
   
   ResultSetMetaData rsmd = rs.getMetaData();
-	int columnCnt = rsmd.getColumnCount(); //컬럼????
+	int columnCnt = rsmd.getColumnCount();
 
   
   while(rs.next())
   {
-//   out.println(" <TD>" + rs.getInt("IH.GI_H_ID") + "</TD>");
   out.println(rs.getString(rsmd.getColumnName(1)) + "::" + rs.getString(rsmd.getColumnName(2)) + "::" + rs.getString(rsmd.getColumnName(3)) + "::"	
 			+ rs.getString(rsmd.getColumnName(4)) + "::" + rs.getString(rsmd.getColumnName(5)) + "::" + rs.getString(rsmd.getColumnName(6)) + "::" 
 			+ rs.getString(rsmd.getColumnName(7)) + "::" + rs.getString(rsmd.getColumnName(8)) + "::" + rs.getString(rsmd.getColumnName(9)) + "::" 
@@ -100,7 +93,6 @@ try {
 	  if(conn != null) 
 		  conn.close();
 	 }catch(SQLException se){
-	//	 System.out.println("객체오류");
 	}
 
 %>
