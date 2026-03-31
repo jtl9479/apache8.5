@@ -15,14 +15,7 @@
 boolean connection = false;
 Connection conn = null;
 
-/* System.out.println("==================================");
-System.out.println("==========update_shipment=========");
-System.out.println("=================================="); */
-
 request.setCharacterEncoding("UTF-8");
-
-//String data = "test::test::test::test::KG::1::1::1::1::2";
-//String[] arrData = data.split("::");
 
 String dbid = request.getParameter("dbid");
 String data = request.getParameter("data");
@@ -59,18 +52,7 @@ try {
 try {
 
  //SQL
- /*
-  String qry = "INSERT INTO S_BARCODE_INFO(BARCODE_INFO_ID, PACKER_CLIENT_CODE, PACKER_PRODUCT_CODE, PACKER_PRD_NAME, BRAND_CODE, BARCODEGOODS, BASEUNIT, ZEROPOINT, PARCKER_PRD_CODE_FROM, PACKER_PRD_CODE_TO, BARCODEGOODS_FROM, BARCODEGOODS_TO, WEIGHT_FROM, WEIGHT_TO, STATUS, REG_ID, REG_DATE, REG_TIME) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-*/  
-
-
 	String qry = "UPDATE W_GOODS_ID set CHECK_YN='N', MOD_ID = ?, MOD_DATE = ?, MOD_TIME = ? WHERE GI_D_ID=? AND ITEM_CODE=? AND BRAND_CODE=?";
-
-	// 출고상품 체크상태 변경
-  //String qry = "UPDATE W_GOODS_ID set CHECK_YN='Y', STATUS='20' WHERE GI_D_ID=? AND ITEM_CODE=? AND BRAND_CODE=?";
-
-	//출고상품 체크상태 변경
-  //String qry = "UPDATE W_GOODS_ID set CHECK_YN=? WHERE GI_D_ID=? AND ITEM_CODE=? AND BRAND_CODE=?";
 
   PreparedStatement pstmt = conn.prepareStatement(qry);
   System.out.println("##update_shipment query :" + qry);
@@ -83,20 +65,8 @@ try {
   pstmt.setString(6, splitData[2]);
 
 
-/*
-  pstmt.setDouble(1, Double.parseDouble(gi_qty));
-  pstmt.setInt(2, Integer.parseInt(packing_qty));
-  pstmt.setString(3, check_yn);
-  pstmt.setInt(4, Integer.parseInt(gi_d_id));
-  pstmt.setString(5, item_code);
-  pstmt.setString(6, brand_code);
-*/
   pstmt.executeUpdate();
   conn.commit();
-
-/* System.out.println("==================================");
-System.out.println("==========update_shipment2=========");
-System.out.println("=================================="); */
 
 	System.out.println("##update shipment parameter : ====UPDATE_SHIPMENT PARAMS=====");
 	System.out.println("##update shipment parameter : ========MOD_ID=================" + splitData[3]);
