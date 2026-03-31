@@ -53,7 +53,7 @@ try {
 								+ ", V.이력번호 AS IMPORT_ID_NO"
 								+ ", I.PPCODE AS PACKER_PRODUCT_CODE"
 								+ ", M.바코드타입 AS BARCODE_TYPE"
-								+ ", IIF(I.원료육여부 = 1, 'W', '') AS ITEM_TYPE"
+								+ ", M.타입구분 AS ITEM_TYPE"
 								+ ", COALESCE(NULLIF(V.평균중량,0), I.박스중량) AS PACKWEIGHT"
 								+ ", I.상품바코드 AS BARCODEGOODS"
 								+ ", SD.납기일자 AS STORE_IN_DATE"
@@ -110,11 +110,10 @@ try {
 								+ "  AND C1.대분류 = 'Q14'"
 								+ "  AND C1.소분류 = I.원산지"
 								+ " WHERE D.회사코드 = '20'"
-								+ "   AND D.출고일자 > '20260316'"
-								+ "   AND D.창고코드 = '1'"
 								+ "   AND H.마트사구분 = '1'"
 								+ "   AND D.출고수량 > 0"
-								+ "   AND I.원료육여부 = '1'"
+								+ "   AND M.타입구분 = 'W'"
+								+ qry_where
 								+ " ORDER BY GI_D_ID ASC";
   
   ResultSet rs = stmt.executeQuery(quertystring);
