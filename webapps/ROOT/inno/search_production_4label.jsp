@@ -72,11 +72,10 @@ try {
   
   ResultSet rs = stmt.executeQuery(quertystring);
   
-  /* System.out.println(quertystring); */
   System.out.println("##search_production query :" + quertystring);
   
   ResultSetMetaData rsmd = rs.getMetaData();
-	int columnCnt = rsmd.getColumnCount(); //而щ읆????
+	int columnCnt = rsmd.getColumnCount();
 
   while(rs.next())
   {
@@ -90,8 +89,6 @@ try {
 			+ rs.getString("PACKERNAME") + "::" + rs.getString("PACKER_PRODUCT_CODE") + "::" + rs.getString("BARCODE_TYPE") + "::" 
 			+ rs.getString("ITEM_TYPE") + "::" + rs.getString("PACKWEIGHT") + "::" + rs.getString("BARCODEGOODS") + "::" + rs.getString("STORE_IN_DATE") + "::"
 			+ rs.getString("EMARTLOGIS_CODE") + "::" + rs.getString("EMARTLOGIS_NAME") + ";;");
-//   out.println(rs.getString("DE_CLIENT(IH.CLIENT_CODE)") + "::" + rs.getString("DE_ITEM(ITEM_CODE)") + ";;");
-//      out.println(rs.getString(rsmd.getColumnName(1)));
   }
 
 	try{
@@ -102,7 +99,6 @@ try {
 	  if(conn != null) 
 		  conn.close();
 	 }catch(SQLException se){
-	//	 System.out.println("?곌껐 媛앹껜 ?リ린 ?꾨즺");
 	}
 
 %>
