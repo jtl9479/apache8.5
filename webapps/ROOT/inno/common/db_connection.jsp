@@ -20,25 +20,6 @@
         return conn;
     }
 
-    /*
-    // Oracle 연결 (사용 안함)
-    public Connection getOracleConnection() {
-        Connection conn = null;
-        String driver = "oracle.jdbc.driver.OracleDriver";
-        String url = "jdbc:oracle:thin:@1.1.1.1:SIDname";
-        String user = "DBuser";
-        String password = "DBpassword";
-
-        try {
-            Class.forName(driver);
-            conn = DriverManager.getConnection(url, user, password);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return conn;
-    }
-    */
-
     // DB 연결 종료
     public void closeDB(Connection conn, Statement stmt, ResultSet rs) {
         try { if(rs != null) rs.close(); } catch(Exception e) {}
