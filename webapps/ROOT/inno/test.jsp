@@ -76,7 +76,7 @@ try {
   System.out.println("This is quertystring. :" + quertystring);
   
   ResultSetMetaData rsmd = rs.getMetaData();
-	int columnCnt = rsmd.getColumnCount(); //컬럼????
+	int columnCnt = rsmd.getColumnCount();
 
   while(rs.next())
   {
@@ -90,8 +90,6 @@ try {
 			+ rs.getString("PACKERNAME") + "::" + rs.getString("PACKER_PRODUCT_CODE") + "::" + rs.getString("BARCODE_TYPE") + "::" 
 			+ rs.getString("ITEM_TYPE") + "::" + rs.getString("PACKWEIGHT") + "::" + rs.getString("BARCODEGOODS") + "::" + rs.getString("STORE_IN_DATE") + "::"
 			+ rs.getString("EMARTLOGIS_CODE") + "::" + rs.getString("EMARTLOGIS_NAME") + ";;");
-//   out.println(rs.getString("DE_CLIENT(IH.CLIENT_CODE)") + "::" + rs.getString("DE_ITEM(ITEM_CODE)") + ";;");
-//      out.println(rs.getString(rsmd.getColumnName(1)));
   }
 
 	try{
@@ -102,7 +100,6 @@ try {
 	  if(conn != null) 
 		  conn.close();
 	 }catch(SQLException se){
-	//	 System.out.println("?�결 객체 ?�기 ?�료");
 	}
 
 %>
