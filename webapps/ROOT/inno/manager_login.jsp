@@ -30,7 +30,9 @@
 	//SQL
 	//비밀번호 조회 비밀번호
 	Statement stmt = conn.createStatement();
-	ResultSet rs = stmt.executeQuery("SELECT 비밀번호 from CO_비밀번호 WHERE 회사코드 = '" + companyCode + "' AND 사번 = '" + id + "' ");
+	String quertystring = "SELECT 비밀번호 from CO_비밀번호 WHERE 회사코드 = '" + companyCode + "' AND 사번 = '" + id + "' ";
+	System.out.println("##manager_login query :" + quertystring);
+	ResultSet rs = stmt.executeQuery(quertystring);
 	ResultSetMetaData rsmd = rs.getMetaData();
 
 	int count = 0;

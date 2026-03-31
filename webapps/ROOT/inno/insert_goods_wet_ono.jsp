@@ -61,8 +61,7 @@ try {
 		+ " VALUES "
 		+ "(W_GOODS_WET_SEQ.NEXTVAL,?,?,?,?,?,?,?,?,?,?,?,?)";
   PreparedStatement pstmt = conn.prepareStatement(qry);
-  
-  
+  System.out.println("##insert_goods_wet_ono query :" + qry);
 
   pstmt.setInt(1, Integer.parseInt(splitData[0]));
   pstmt.setDouble(2, (Double.parseDouble(splitData[1]) * 100) / 100.0);

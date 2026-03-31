@@ -72,7 +72,8 @@ try {
 	//출고상품 체크상태 변경
   //String qry = "UPDATE W_GOODS_ID set CHECK_YN=? WHERE GI_D_ID=? AND ITEM_CODE=? AND BRAND_CODE=?";
 
-  PreparedStatement pstmt = conn.prepareStatement(qry);    
+  PreparedStatement pstmt = conn.prepareStatement(qry);
+  System.out.println("##update_shipment query :" + qry);
 
   pstmt.setString(1, splitData[3]);
   pstmt.setString(2, dateStr);
