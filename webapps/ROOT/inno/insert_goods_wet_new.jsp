@@ -110,7 +110,6 @@ try {
   out.println("s");  
 } catch (Exception ex) {
 		out.println("f");
-		//out.println(ex.getMessage());
 		ex.printStackTrace();
 		System.out.println("=============insert_goods_wet exception============== message :" + ex.getMessage().toString());
 		conn.rollback();
