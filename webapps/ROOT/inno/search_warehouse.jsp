@@ -29,12 +29,15 @@ try {
 	e.printStackTrace();
 }
  //SQL
+  String qry_where = request.getParameter("data");
+  System.out.println("##search_warehouse data :" + qry_where);
+
   Statement stmt = conn.createStatement();
   String quertystring = "SELECT 회사코드 AS COMPANY_CODE"
   								+ ", 창고코드 AS WAREHOUSE_CODE"
 								+ ", 창고명 AS WAREHOUSE_NAME"
 								+ " FROM CO_창고관리"
-								+ " WHERE 회사코드 = '20'";
+								+ qry_where;
 
   ResultSet rs = stmt.executeQuery(quertystring);
 
