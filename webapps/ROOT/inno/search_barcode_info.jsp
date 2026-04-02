@@ -59,7 +59,7 @@ try {
 							 + ", CASE WHEN 적용단위 = 1 THEN 적용값 * 365"
 							 + "       WHEN 적용단위 = 2 THEN 적용값 * 30"
 							 + "       ELSE 적용값 END AS SHELF_LIFE"
-					     + " FROM CO_품목코드"
+					     + " FROM CO_품목코드 SBI"
 							+ qry_where
 						+ " ORDER BY PACKER_PRODUCT_CODE ASC";
   
