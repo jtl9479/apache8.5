@@ -61,6 +61,7 @@ try {
 							 + "       ELSE 적용값 END AS SHELF_LIFE"
 					     + " FROM CO_품목코드 SBI"
 							+ qry_where
+							+ " AND SBI.ppCode != ''"
 						+ " ORDER BY PACKER_PRODUCT_CODE ASC";
   
   ResultSet rs = stmt.executeQuery(quertystring);
