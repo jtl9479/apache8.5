@@ -60,6 +60,7 @@ try {
 		+ ", 제조일자 AS MAKINGDATE"
 		+ ", 박스시리얼 AS BOXSERIAL"
 		+ ", '' AS BOX_ORDER"
+		+ ", 출고LOTSEQ AS GI_L_ID"
 		+ " FROM SM_출고계근"
 		+ qry_where
 		+ " ORDER BY GI_D_ID ASC";
@@ -76,7 +77,7 @@ try {
  	 out.println(rs.getString(rsmd.getColumnName(1)) + "::" + rs.getString(rsmd.getColumnName(2)) + "::" + rs.getString(rsmd.getColumnName(3)) + "::"
 			+ rs.getString(rsmd.getColumnName(4)) + "::" + rs.getString(rsmd.getColumnName(5)) + "::" + rs.getString(rsmd.getColumnName(6)) + "::"
 			+ rs.getString(rsmd.getColumnName(7)) + "::" + rs.getString(rsmd.getColumnName(8)) + "::" + rs.getString(rsmd.getColumnName(9)) + "::"
-			+ rs.getString(rsmd.getColumnName(10)) + "::" + rs.getString(rsmd.getColumnName(11)) + "::" + rs.getString(rsmd.getColumnName(12)) + "::" + rs.getString(rsmd.getColumnName(13)) + ";;");
+			+ rs.getString(rsmd.getColumnName(10)) + "::" + rs.getString(rsmd.getColumnName(11)) + "::" + rs.getString(rsmd.getColumnName(12)) + "::" + rs.getString(rsmd.getColumnName(13)) + "::" + rs.getString(rsmd.getColumnName(14)) + ";;");
   	}
 	} catch (Exception ex) {
 		out.println(ex.getMessage().toString());
