@@ -39,8 +39,8 @@ try {
 								+ ", I.품목명 AS ITEM_NAME"
 								+ ", ME.상품코드 AS EMARTITEM_CODE"
 								+ ", ME.상품명 AS EMARTITEM"
-								+ ", D.출고수량 AS GI_REQ_PKG"
-								+ ", D.출고중량 AS GI_REQ_QTY"
+								+ ", L.박스수량 AS GI_REQ_PKG"
+								+ ", L.중량 AS GI_REQ_QTY"
 								+ ", D.출고일자 AS GI_REQ_DATE"
 								+ ", ISNULL(V.BLNO, V.이력번호) AS BL_NO"
 								+ ", '' AS BRAND_CODE"
@@ -64,6 +64,7 @@ try {
 								+ ", C1.명칭 AS CT_NAME"
 								+ ", ME.점포코드 AS STORE_CODE"
 								+ ", '' AS EMART_PLANT_CODE"
+								+ ", L.SEQ AS GI_L_ID"
 								+ " FROM SM_출고상세 D"
 								+ " INNER JOIN SM_출고머리 H"
 								+ "   ON H.회사코드 = D.회사코드"
@@ -165,7 +166,8 @@ try {
 		rs.getString("USE_CODE") + "::" +          // 26
 		rs.getString("CT_NAME") + "::" +           // 27
 		rs.getString("STORE_CODE") + "::" +        // 28
-		rs.getString("EMART_PLANT_CODE") + ";;"    // 29
+		rs.getString("EMART_PLANT_CODE") + "::" +  // 29
+		rs.getString("GI_L_ID") + ";;"             // 30
 		);
 	}
 
