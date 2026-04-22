@@ -30,33 +30,36 @@ try {
 	out.println(e.getMessage().toString());
 	e.printStackTrace();
 } 
- //SQL 
+ //SQL
   Statement stmt = conn.createStatement();
+  // Java(ProgressDlgBarcodeSearch.java)에서 WHERE SBI.ITEM_CODE = '...' 형태로 전송
+  // CO_품목코드의 실제 컬럼명은 '품목코드'이므로 ITEM_CODE → 품목코드로 치환
+  qry_where = qry_where.replace("SBI.ITEM_CODE", "SBI.품목코드");
 	String quertystring = "SELECT '이마트용' as PACKER_CLIENT_CODE"
-		+ ", sbi.ITEM_CODE as PACKER_PRODUCT_CODE"
-		+ ", sbi.ITEM_NAME_KR as PACKER_PRD_NAME"
-		+ ", sbi.ITEM_CODE as ITEMCODE"
-		+ ", sbi.ITEM_NAME_KR as ITEM_NAME_KR"
+		+ ", SBI.품목코드 as PACKER_PRODUCT_CODE"
+		+ ", SBI.품목명 as PACKER_PRD_NAME"
+		+ ", SBI.품목코드 as ITEMCODE"
+		+ ", SBI.품목명 as ITEM_NAME_KR"
 		+ ", '0000' as BRAND_CODE"
-		+ ", sbi.ITEM_CODE as BARCODEGOODS"
+		+ ", SBI.품목코드 as BARCODEGOODS"
 		+ ", 'KG' as BASEUNIT"
-		+ ", SBI.ZEROPOINT"
-		+ ", SBI.PACKER_PRD_CODE_FROM"
-		+ ", SBI.PACKER_PRD_CODE_TO"
-		+ ", SBI.BARCODEGOODS_FROM"
-		+ ", SBI.BARCODEGOODS_TO"
-		+ ", SBI.WEIGHT_FROM"
-		+ ", SBI.WEIGHT_TO"
-		+ ", SBI.MAKINGDATE_FROM"
-		+ ", SBI.MAKINGDATE_TO"
-		+ ", SBI.BOXSERIAL_FROM"
-		+ ", SBI.BOXSERIAL_TO"
-		+ ", SBI.STATUS"
-		+ ", SBI.REG_ID"
-		+ ", SBI.REG_DATE"
-		+ ", SBI.REG_TIME"
+		+ ", SBI.소수점 AS ZEROPOINT"
+		+ ", '' AS PACKER_PRD_CODE_FROM"
+		+ ", '' AS PACKER_PRD_CODE_TO"
+		+ ", SBI.바코드상품코드시작 AS BARCODEGOODS_FROM"
+		+ ", SBI.바코드상품코드끝 AS BARCODEGOODS_TO"
+		+ ", SBI.중량시작 AS WEIGHT_FROM"
+		+ ", SBI.중량끝 AS WEIGHT_TO"
+		+ ", SBI.제조일자시작 AS MAKINGDATE_FROM"
+		+ ", SBI.제조일자끝 AS MAKINGDATE_TO"
+		+ ", SBI.박스시리얼시작 AS BOXSERIAL_FROM"
+		+ ", SBI.박스시리얼끝 AS BOXSERIAL_TO"
+		+ ", SBI.생산품상태 AS STATUS"
+		+ ", '' AS REG_ID"
+		+ ", '' AS REG_DATE"
+		+ ", '' AS REG_TIME"
 		+ ", '0000' AS memo"
-		+ " FROM B_ITEM sbi"
+		+ " FROM CO_품목코드 SBI"
 		+ qry_where
 		+ " ORDER BY ITEMCODE ASC";
   
