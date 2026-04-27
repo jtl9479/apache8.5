@@ -5,7 +5,7 @@
 <%@ page import="org.apache.log4j.Logger"%>
 <%@ include file="common/db_connection.jsp" %>
 <%!
- static Logger logger = Logger.getLogger("search_barcode_info.jsp");
+ static Logger logger = Logger.getLogger("search_barcode_info_nonfixed.jsp");
 %>
 <%
 boolean connection = false;
@@ -16,7 +16,7 @@ request.setCharacterEncoding("UTF-8");
 String qry_where = request.getParameter("data");
 String dbid = request.getParameter("dbid");
 System.out.println("============================================");
-System.out.println("=========search_barcode_info start==========");
+System.out.println("=========search_barcode_info_nonfixed start==========");
 System.out.println("============================================");
 System.out.println("##search_barcode_info all parameter :" + qry_where);
 
