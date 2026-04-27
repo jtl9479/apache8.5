@@ -42,7 +42,7 @@ try {
 									+ ", L.박스수량 AS GI_REQ_PKG"
 									+ ", L.중량 AS GI_REQ_QTY"
 									+ ", D.출고일자 AS GI_REQ_DATE"
-									+ ", ISNULL(V.BLNO, V.이력번호) AS BL_NO"
+									+ ", COALESCE(NULLIF(V.BLNO, ''), V.이력번호) AS BL_NO  "
 									+ ", '' AS BRAND_CODE"
 									+ ", ME.점포코드 AS CLIENT_CODE"
 									+ ", ME.점포명 AS CLIENTNAME"
