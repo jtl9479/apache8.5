@@ -56,7 +56,7 @@ try {
 								+ ", COALESCE(M1.타입구분, M2.타입구분) AS ITEM_TYPE"
 								+ ", COALESCE(NULLIF(V.평균중량,0), I.박스중량) AS PACKWEIGHT"
 								+ ", I.상품바코드 AS BARCODEGOODS"
-								+ ", SD.납기일자 AS STORE_IN_DATE"
+								+ ", H.출고일자 AS STORE_IN_DATE"
 								+ ", COALESCE(M1.물류코드, M2.물류코드) AS EMARTLOGIS_CODE"
 								+ ", B.창고구역 AS WH_AREA"
 								+ ", C.명칭 AS USE_NAME"
@@ -117,10 +117,17 @@ try {
 								+ qry_where
 								+ " ORDER BY GI_D_ID ASC";
   
-  ResultSet rs = stmt.executeQuery(quertystring);
-  
   System.out.println("##search_shipment query :" + quertystring);
-  
+
+  ResultSet rs = null;
+  try {
+      rs = stmt.executeQuery(quertystring);
+  } catch (SQLException sqle) {
+      System.out.println("##search_shipment SQLException : " + sqle.getMessage());
+      sqle.printStackTrace();
+      throw sqle;
+  }
+
   ResultSetMetaData rsmd = rs.getMetaData();
 	int columnCnt = rsmd.getColumnCount();
 
