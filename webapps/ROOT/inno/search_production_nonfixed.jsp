@@ -124,7 +124,7 @@ try {
 									+ "  AND C1.소분류 = I.원산지"
 									+ " WHERE H.마트사구분 = '7'"
 									+ "   AND D.출고수량 > 0"
-									+ "   AND COALESCE(M1.타입구분, M2.타입구분) IN ('J', 'B')"
+									+ "   AND COALESCE(M1.타입구분, M2.타입구분) = 'B'"
 									+ "   AND COALESCE(M1.바코드타입, M2.바코드타입) = 'M8'"
 									+ qry_where
 									+ " ORDER BY GI_D_ID ASC";
