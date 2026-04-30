@@ -97,7 +97,9 @@ try {
 								+ "  AND V.LOTNO = L.LOTNO"
 								+ " LEFT JOIN SM_수주상세 SD"
 								+ "   ON SD.마트사SEQ = HE.SEQ"
-								+ " WHERE D.출고수량 > 0"
+								+ " WHERE H.마트사구분 = '4'"
+								+ "   AND D.출고수량 > 0"
+								+ "   AND COALESCE(M1.타입구분, M2.타입구분) = 'W'"
 								+ qry_where
 								+ " ORDER BY HE.납품처코드 ASC, I.PPCODE ASC, I.품목명 ASC";
 
