@@ -72,6 +72,7 @@ try {
 								+ " JOIN CO_거래처MASTER B"
 								+ "   ON HE.회사코드 = B.회사코드"
 								+ "  AND HE.납품처코드 = B.마트사거래처코드"
+								+ "  AND B.마트사구분 = '4'"
 								+ " LEFT JOIN CO_거래처MASTER G"
 								+ "   ON G.회사코드 = D.회사코드"
 								+ "  AND G.거래처코드 = H.출고거래처"
