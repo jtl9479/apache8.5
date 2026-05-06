@@ -80,6 +80,7 @@ try {
 								+ "  AND V.LOTNO = L.LOTNO"
 								+ " WHERE H.마트사구분 = ''"
 								+ "   AND D.출고수량 > 0"
+								+ "   AND I.원료육여부 = '1'"
 								+ qry_where
 								+ " ORDER BY D.SEQ ASC"
 								;
