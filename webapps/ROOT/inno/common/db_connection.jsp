@@ -5,9 +5,9 @@
     public Connection getMSSQLConnection() {
         Connection conn = null;
         String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
-        String url = "jdbc:sqlserver://115.68.112.17:1433;databaseName=weberp_dev;encrypt=false";
-        String user = "weberp_dev";
-        String password = "weberpdev!@#";
+        String url = "jdbc:sqlserver://115.68.112.17:1433;databaseName=weberp_hl;encrypt=false";
+        String user = "weberp_hl";
+        String password = "weberphl1234!!";
 
         try {
             Class.forName(driver);

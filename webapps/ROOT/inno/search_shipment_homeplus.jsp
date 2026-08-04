@@ -56,8 +56,9 @@ try {
 								+ ", 'S' AS ITEM_TYPE"
 								+ ", COALESCE(NULLIF(V.평균중량,0), I.박스중량) AS PACKWEIGHT"
 								+ ", I.상품바코드 AS BARCODEGOODS"
-								+ ", SD.납기일자 AS STORE_IN_DATE"
+								+ ", H.출고일자 AS STORE_IN_DATE"
 								+ ", HE.납품처코드 AS EMARTLOGIS_CODE"
+								+ ", L.SEQ AS GI_L_ID"
 								+ " FROM SM_출고상세 D"
 								+ " INNER JOIN SM_출고머리 H"
 								+ "   ON H.회사코드 = D.회사코드"
@@ -96,8 +97,7 @@ try {
 								+ "  AND V.창고코드 = D.창고코드"
 								+ "  AND V.품목코드 = D.출고품목코드"
 								+ "  AND V.LOTNO = L.LOTNO"
-								+ " LEFT JOIN SM_수주상세 SD"
-								+ "   ON SD.마트사SEQ = HE.SEQ"
+								+ "  AND V.년월 = LEFT(D.출고일자, 6)"
 								+ " WHERE H.마트사구분 = '4'"
 								+ "   AND D.출고수량 > 0"
 								+ "   AND COALESCE(M1.타입구분, M2.타입구분) = 'W'"
@@ -143,7 +143,8 @@ try {
 		rs.getString("PACKWEIGHT") + "::" +         // 20
 		rs.getString("BARCODEGOODS") + "::" +       // 21
 		rs.getString("STORE_IN_DATE") + "::" +      // 22
-		rs.getString("EMARTLOGIS_CODE") + ";;"      // 23
+		rs.getString("EMARTLOGIS_CODE") + "::" +     // 23
+		rs.getString("GI_L_ID") + ";;"              // 24
 		);
 	}
 

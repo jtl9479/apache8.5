@@ -103,6 +103,7 @@ try {
 								+ "  AND V.창고코드 = D.창고코드"
 								+ "  AND V.품목코드 = D.출고품목코드"
 								+ "  AND V.LOTNO = L.LOTNO"
+								+ "  AND V.년월 = LEFT(D.출고일자, 6)"
 								+ " LEFT JOIN CO_각종소분류코드 C"
 								+ "   ON C.회사코드 = I.회사코드"
 								+ "  AND C.대분류 = '043'"
