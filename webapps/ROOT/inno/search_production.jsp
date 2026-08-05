@@ -33,11 +33,14 @@ request.setCharacterEncoding("UTF-8");
 String qry_where = request.getParameter("data");
 
 // 앱이 보내는 별칭(SM_출고상세 기준)을 생산 테이블 별칭으로 치환
-//   D.회사코드 → Q.회사코드 (PD_생산작업지시소요량)
-//   D.출고일자 → H.지시일자 (PD_생산작업지시)
+//   D.회사코드   → Q.회사코드 (PD_생산작업지시소요량)
+//   D.출고일자 = → H.지시일자 >= (PD_생산작업지시)
+// 개발62 : 생산은 선택일자 이후 지시를 모두 조회한다.
+//          (Oracle 원본 VW_PDA_WID_PRO_LIST 의 GI_REQ_DATE >= SYSDATE 동작 복원)
+//          앱이 "AND D.출고일자 = '20260805'" 형태로 보내므로 연산자까지 함께 치환한다.
 if (qry_where != null) {
 	qry_where = qry_where.replace("D.회사코드", "Q.회사코드")
-						 .replace("D.출고일자", "H.지시일자");
+						 .replace("D.출고일자 = ", "H.지시일자 >= ");
 } else {
 	qry_where = "";
 }
