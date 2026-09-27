@@ -64,7 +64,7 @@ try {
 								+ "    FROM SM_출고계근 W"
 								+ "    WHERE W.출고상세SEQ = D.SEQ"
 								+ "      AND W.박스순번 IS NOT NULL"
-								+ "    ORDER BY W.계근ID DESC) AS LAST_BOX_ORDER"
+								+ "    ORDER BY W.SEQ DESC) AS LAST_BOX_ORDER"
 								+ " FROM SM_출고상세 D"
 								+ " INNER JOIN SM_출고머리 H"
 								+ "   ON H.회사코드 = D.회사코드"
