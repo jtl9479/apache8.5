@@ -65,6 +65,7 @@ try {
 								+ "    WHERE W.출고상세SEQ = D.SEQ"
 								+ "      AND W.박스순번 IS NOT NULL"
 								+ "    ORDER BY W.SEQ DESC), 0) AS LAST_BOX_ORDER"
+								+ ", L.SEQ AS GI_L_ID"
 								+ " FROM SM_출고상세 D"
 								+ " INNER JOIN SM_출고머리 H"
 								+ "   ON H.회사코드 = D.회사코드"
@@ -142,7 +143,8 @@ try {
 			+ rs.getString("STORE_IN_DATE") + "::"     // 22
 			+ rs.getString("EMARTLOGIS_CODE") + "::"   // 23
 			+ rs.getString("WH_AREA") + "::"           // 24
-			+ rs.getString("LAST_BOX_ORDER") + ";;");  // 25
+			+ rs.getString("LAST_BOX_ORDER") + "::"    // 25
+			+ rs.getString("GI_L_ID") + ";;");         // 26
   }
 
 	try{
