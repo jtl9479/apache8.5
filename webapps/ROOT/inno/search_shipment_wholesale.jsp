@@ -58,6 +58,7 @@ try {
 								+ ", I.상품바코드 AS BARCODEGOODS"
 								+ ", D.출고일자 AS STORE_IN_DATE"
 								+ ", '0000000' AS EMARTLOGIS_CODE"
+								+ ", L.SEQ AS GI_L_ID"
 								+ " FROM SM_출고상세 D"
 								+ " INNER JOIN SM_출고머리 H"
 								+ "   ON H.회사코드 = D.회사코드"
@@ -118,7 +119,8 @@ try {
 			+ rs.getString("PACKWEIGHT") + "::"          // 20
 			+ rs.getString("BARCODEGOODS") + "::"        // 21
 			+ rs.getString("STORE_IN_DATE") + "::"       // 22
-			+ rs.getString("EMARTLOGIS_CODE") + ";;");   // 23
+			+ rs.getString("EMARTLOGIS_CODE") + "::"     // 23
+			+ rs.getString("GI_L_ID") + ";;");           // 24
   }
 
 	try{
