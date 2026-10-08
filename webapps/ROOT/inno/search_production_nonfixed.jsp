@@ -42,19 +42,19 @@ try {
 									+ ", L.박스수량 AS GI_REQ_PKG"
 									+ ", L.중량 AS GI_REQ_QTY"
 									+ ", D.출고일자 AS GI_REQ_DATE"
-									+ ", COALESCE(NULLIF(V.BLNO, ''), V.이력번호) AS BL_NO  "
+									+ ", COALESCE(NULLIF(V.BLNO, ''), NULLIF(L.이력번호, ''), V.이력번호) AS BL_NO  "
 									+ ", '' AS BRAND_CODE"
-									+ ", ME.점포코드 AS CLIENT_CODE"
-									+ ", ME.점포명 AS CLIENTNAME"
-									+ ", B.상호 AS CENTERNAME"
+									+ ", H.출고거래처 AS CLIENT_CODE"      // 원본 IH.CLIENT_CODE (출고업체코드)
+									+ ", CASE WHEN LEFT(BC.상호, 2) = 'CJ' THEN G.약칭 + '(' + ME.점포코드 + ')' ELSE G.상호 END AS CLIENTNAME"      // 원본 DECODE(CJ, DE_CLIENT2(IH.CLIENT_CODE)||(점포코드), DE_CLIENT(IH.CLIENT_CODE))
+									+ ", BC.상호 AS CENTERNAME"      // 원본 EOI.CENTER_CODE → 센터명
 									+ ", I.규격 AS ITEM_SPEC"
 									+ ", I.원산지 AS CT_CODE"
 									+ ", '0000' AS PACKER_CODE"
-									+ ", V.이력번호 AS IMPORT_ID_NO"
+									+ ", COALESCE(NULLIF(L.이력번호, ''), V.이력번호) AS IMPORT_ID_NO"
 									+ ", I.품목코드 AS PACKER_PRODUCT_CODE"
 									+ ", COALESCE(M1.바코드타입, M2.바코드타입) AS BARCODE_TYPE"
 									+ ", 'HW' AS ITEM_TYPE"
-									+ ", COALESCE(NULLIF(V.평균중량,0), I.박스중량) AS PACKWEIGHT"
+									+ ", COALESCE(NULLIF(L.평균중량,0), NULLIF(V.평균중량,0), I.박스중량) AS PACKWEIGHT"
 									+ ", I.품목코드 AS BARCODEGOODS"
 									+ ", SD.납기일자 AS STORE_IN_DATE"
 									+ ", COALESCE(M1.물류코드, M2.물류코드) AS EMARTLOGIS_CODE"
@@ -91,6 +91,11 @@ try {
 									+ "   ON ME.회사코드 = B.회사코드"
 									+ "  AND ME.점포코드 = B.마트사거래처코드"
 									+ "  AND B.마트사구분 = '7'"
+									// 센터명: 발주 센터코드 기준 (원본 VW_PDA_WID_LIST BCC: EOI.CENTER_CODE = BCC.CODE)
+									+ " JOIN CO_거래처MASTER BC"
+									+ "   ON ME.회사코드 = BC.회사코드"
+									+ "  AND ME.센터코드 = BC.마트사거래처코드"
+									+ "  AND BC.마트사구분 = '7'"
 									+ " JOIN CO_거래처MASTER G"
 									+ "   ON G.회사코드 = D.회사코드"
 									+ "  AND G.거래처코드 = H.출고거래처"
@@ -114,6 +119,7 @@ try {
 									+ "  AND V.창고코드 = D.창고코드"
 									+ "  AND V.품목코드 = D.출고품목코드"
 									+ "  AND V.LOTNO = L.LOTNO"
+									+ "  AND V.년월 = LEFT(D.출고일자, 6)"      // 월별 재고뷰: 출고월 1행만 (없으면 월 수만큼 중복)
 									+ " LEFT JOIN CO_각종소분류코드 C"
 									+ "   ON C.회사코드 = I.회사코드"
 									+ "  AND C.대분류 = '043'"
@@ -123,6 +129,7 @@ try {
 									+ "  AND C1.대분류 = 'Q14'"
 									+ "  AND C1.소분류 = I.원산지"
 									+ " WHERE H.마트사구분 = '7'"
+									+ "   AND H.거래명세발행여부 = 'N'"
 									+ "   AND D.출고수량 > 0"
 									+ "   AND COALESCE(M1.타입구분, M2.타입구분) = 'B'"
 									// [2026-06-23] 바코드타입(M8/M9) 조회조건 제외 - 사용자 요청
