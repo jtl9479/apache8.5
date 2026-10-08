@@ -43,14 +43,14 @@ try {
 								+ ", L.박스수량 AS GI_REQ_PKG"
 								+ ", L.중량 AS GI_REQ_QTY"
 								+ ", D.출고일자 AS GI_REQ_DATE"
-								+ ", COALESCE(NULLIF(V.BLNO, ''), V.이력번호) AS BL_NO"
+								+ ", COALESCE(NULLIF(V.BLNO, ''), NULLIF(L.이력번호, ''), V.이력번호) AS BL_NO"
 								+ ", '' AS BRAND_CODE"
-								+ ", HE.납품처코드 AS CLIENT_CODE"
-								+ ", HE.납품처명 AS CLIENTNAME"
+								+ ", H.출고거래처 AS CLIENT_CODE"      // 원본 IH.CLIENT_CODE (출고업체코드)
+								+ ", CASE WHEN LEFT(B.상호, 2) = 'CJ' THEN G.약칭 + '(' + HE.배송처코드 + ')' ELSE HE.배송처 END AS CLIENTNAME"      // 원본 DECODE(CJ, DE_CLIENT2(IH.CLIENT_CODE)||(STORE_CODE), EOI.STORE_NAME)
 								+ ", B.상호 AS CENTERNAME"
 								+ ", I.규격 AS ITEM_SPEC"
 								+ ", I.원산지 AS CT_CODE"
-								+ ", V.이력번호 AS IMPORT_ID_NO"
+								+ ", COALESCE(NULLIF(L.이력번호, ''), V.이력번호) AS IMPORT_ID_NO"
 								+ ", I.패커코드 AS PACKER_CODE"
 								+ ", I.품목코드 AS PACKER_PRODUCT_CODE"
 								+ ", COALESCE(M1.바코드타입, M2.바코드타입) AS BARCODE_TYPE"
@@ -64,6 +64,7 @@ try {
 								+ ", '' AS USE_CODE"
 								+ ", C1.명칭 AS CT_NAME"
 								+ ", HE.납품처코드 AS STORE_CODE"
+								+ ", L.SEQ AS GI_L_ID"
 								+ " FROM SM_출고상세 D"
 								+ " INNER JOIN SM_출고머리 H"
 								+ "   ON H.회사코드 = D.회사코드"
@@ -102,6 +103,7 @@ try {
 								+ "  AND V.창고코드 = D.창고코드"
 								+ "  AND V.품목코드 = D.출고품목코드"
 								+ "  AND V.LOTNO = L.LOTNO"
+								+ "  AND V.년월 = LEFT(D.출고일자, 6)"      // 월별 재고뷰: 출고월 1행만 (없으면 월 수만큼 중복)
 								+ " LEFT JOIN SM_수주상세 SD"
 								+ "   ON SD.마트사SEQ = HE.SEQ"
 								+ " LEFT JOIN CO_각종소분류코드 C1"
@@ -109,6 +111,7 @@ try {
 								+ "  AND C1.대분류 = 'Q14'"
 								+ "  AND C1.소분류 = I.원산지"
 								+ " WHERE H.마트사구분 = '4'"
+								+ "   AND H.거래명세발행여부 = 'N'"
 								+ "   AND D.출고수량 > 0"
 								+ "   AND COALESCE(M1.바코드타입, M2.바코드타입) = 'H5'"
 								+ qry_where
@@ -152,7 +155,8 @@ try {
 			+ rs.getString("USE_NAME") + "::"            // 25
 			+ rs.getString("USE_CODE") + "::"            // 26
 			+ rs.getString("CT_NAME") + "::"             // 27
-			+ rs.getString("STORE_CODE") + ";;");        // 28
+			+ rs.getString("STORE_CODE") + "::"         // 28
+			+ rs.getString("GI_L_ID") + ";;");           // 29
   }
 
 	try{
