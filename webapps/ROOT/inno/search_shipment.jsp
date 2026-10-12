@@ -57,7 +57,7 @@ try {
 								+ ", COALESCE(NULLIF(L.평균중량,0), NULLIF(V.평균중량,0), I.박스중량) AS PACKWEIGHT"
 								+ ", I.상품바코드 AS BARCODEGOODS"
 								+ ", H.출고일자 AS STORE_IN_DATE"
-								+ ", COALESCE(M1.물류코드, M2.물류코드) AS EMARTLOGIS_CODE"
+								+ ", ISNULL(NULLIF(COALESCE(M1.물류코드, M2.물류코드), ''), '0000000') AS EMARTLOGIS_CODE"   // 원본: DECODE(EO.EMARTLOGIS_CODE,NULL,'0000000',...) (오류/42)
 								+ ", B.창고구역 AS WH_AREA"
 								+ ", C.명칭 AS USE_NAME"
 								+ ", I.제품용도 AS USE_CODE"
