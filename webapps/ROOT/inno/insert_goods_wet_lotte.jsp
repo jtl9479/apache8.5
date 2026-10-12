@@ -9,6 +9,14 @@
 <%@ page import="java.util.logging.Logger" %>
 <%@ include file="common/db_connection.jsp" %>
 <%!
+// 패킷 idx 값 (없으면 '', 컬럼 길이 초과 시 자름) — 구버전 앱(15필드)·split 뒤쪽 빈 값 대응 (개발/80)
+static String pkt(String[] s, int idx, int max) {
+	if (s.length <= idx || s[idx] == null) return "";
+	String v = s[idx];
+	return v.length() > max ? v.substring(0, max) : v;
+}
+%>
+<%!
  static Logger logger = Logger.getLogger("insert_goods_wet_lotte.jsp");
 %>
 <%
@@ -90,9 +98,20 @@ try {
 		+ ", 회사코드"
 		+ ", 수정사원"
 		+ ", 수정일자"
-		+ ", 수정시간)"
+		+ ", 수정시간"
+		+ ", 바코드타입"
+		+ ", 라벨바코드1"
+		+ ", 라벨바코드2"
+		+ ", 출력중량"
+		+ ", 소비기한"
+		+ ", 소비기한문구"
+		+ ", 출력이력번호"
+		+ ", 점포코드"
+		+ ", 출력상품명"
+		+ ", 출력지점명"
+		+ ", 출력센터명)"
 		+ " VALUES "
-		+ "(NEXT VALUE FOR SM_DLIVY_WEIGH_SEQ,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		+ "(NEXT VALUE FOR SM_DLIVY_WEIGH_SEQ,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
   PreparedStatement pstmt = conn.prepareStatement(qry);
 
 
@@ -114,6 +133,17 @@ try {
   pstmt.setString(16, splitData[9]);                     // 수정사원
   pstmt.setString(17, dateStr);                          // 수정일자
   pstmt.setString(18, timeStr);                          // 수정시간
+  pstmt.setString(19, pkt(splitData, 15, 2));    // 바코드타입
+  pstmt.setString(20, pkt(splitData, 16, 60));    // 라벨바코드1
+  pstmt.setString(21, pkt(splitData, 17, 60));    // 라벨바코드2
+  pstmt.setString(22, pkt(splitData, 18, 10));    // 출력중량
+  pstmt.setString(23, pkt(splitData, 19, 8));    // 소비기한
+  pstmt.setString(24, pkt(splitData, 20, 30));    // 소비기한문구
+  pstmt.setString(25, pkt(splitData, 21, 30));    // 출력이력번호
+  pstmt.setString(26, pkt(splitData, 22, 20));    // 점포코드
+  pstmt.setString(27, pkt(splitData, 23, 100));    // 출력상품명
+  pstmt.setString(28, pkt(splitData, 24, 100));    // 출력지점명
+  pstmt.setString(29, pkt(splitData, 25, 100));    // 출력센터명
 
 
   System.out.println("##insert_goods_wet_lotte query start, query :"+ qry);
